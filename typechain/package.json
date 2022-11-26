@@ -1,0 +1,20 @@
+{
+  "name": "typechain",
+  "version": "1.0.0",
+  "description": "Learning Typescript by making a blockchain with it",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc-watch --onSuccess \"node dist/block.js\""
+  },
+  "devDependencies": {
+    "tsc-watch": "^4.2.3"
+  },
+  "dependencies": {
+    "@types/luxon": "^1.22.0",
+    "crypto-js": "^4.0.0",
+    "global": "^4.4.0",
+    "luxon": "^1.23.0",
+    "typescript": "^3.8.3"
+  }
+}
