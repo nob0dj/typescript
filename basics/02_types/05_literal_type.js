@@ -25,6 +25,7 @@ console.log(rcp('바위'));
 console.log(rcp('보'));
 const MY_CATEGORY = 'a';
 // const MY_CATEGORY : SomeCategory = 'd'; // Type '"d"' is not assignable to type 'SomeCategory'.
+// #issue - literal type과 기존타입과 불일치
 // const data = {
 //   name : 'abcdefg'
 // };
