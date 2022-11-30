@@ -1,9 +1,9 @@
-// type narrowing
+// # type narrowing
 // 타입확인 typeof, 속성확인 in, 자식여부확인 instanceof 
 // function bar(x : number | string) {
 //   return x + 1;  // Operator '+' cannot be applied to types 'string | number' and 'number'
 // }
-// narrowing
+// ## narrowing basic
 const bar = (x) => {
     if (typeof x === 'number')
         return x + 1;
@@ -18,7 +18,55 @@ const car = (x) => {
     if (typeof x === 'number')
         arr[0] = x;
 };
-// type assertion
+// a. undefined나 null체크후 처리
+((a) => {
+    // if(a.length > 3){ // Cannot read properties of undefined (reading 'length')
+    if (a && a.length > 3) {
+        console.log(a.length);
+    }
+    console.log('끝');
+})(undefined);
+console.log((function (animal) {
+    if ("swim" in animal) {
+        return animal.swim;
+    }
+    return animal.fly;
+})({ swim: 'freestyle' }));
+// c. instanceof 연산자 - class 또는 생성자함수로 만들어진 객체
+class Cat {
+    constructor(catName) {
+        this.catName = catName;
+    }
+}
+class Dog {
+    constructor(dogName) {
+        this.dogName = dogName;
+    }
+}
+const narrowMe = (e) => {
+    e instanceof Dog && console.log(e.dogName);
+    e instanceof Cat && console.log(e.catName);
+    e instanceof Date && console.log(e.toISOString());
+};
+narrowMe(new Dog('리트리버'));
+narrowMe(new Cat('율무'));
+narrowMe(new Date());
+function narrowMe2(x) {
+    if (x.wheel === '2개') {
+        console.log('모터바이크 동호회원님, 안녕하세요.... ' + x.color);
+    }
+    else {
+        console.log('이 ATV로 말씀 드리자면... ' + x.color);
+    }
+}
+narrowMe2({ wheel: '4개', color: 'Red' });
+narrowMe2({ wheel: '2개', color: 'DeepBlue' });
+function convert(data) {
+    return JSON.parse(data);
+}
+const kim = convert('{"name":"kim"}');
+console.log(kim);
+// ## type assertion
 // 타입 덮어씌우기. 타입쉴드가 임시 해제된다.
 // 즉 100% 타입을 확신하는 상황에서 사용. 
 // 결과적으로 비추한다. 왜 타입에러가 나는지 정말 모르겠는 상황에 임시로 에러해결용으로 사용하거나 내가 어떤 타입이 들어올지 정말 확실하게 알고 있는데 컴파일러 에러가 방해할 때
@@ -29,11 +77,6 @@ const dar = (x) => {
 };
 dar(1); // 1
 dar("abc"); // abc
-function convert(data) {
-    return JSON.parse(data);
-}
-const kim = convert('{"name":"kim"}');
-console.log(kim);
 // @실습문제 
 // 1. 숫자배열에 섞여있는 문자타입숫자를 정리해주는 함수 생성
 // ['1', 2, '3']을 전달하면 [1,2,3]이 반환되어야 한다.
