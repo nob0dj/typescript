@@ -48,7 +48,7 @@ const tchr : Teacher = {name : '세종대왕', age : 17, major : '국어'};
 // type도 비슷하게 구현 가능 - &연산자를 통한 교차타입 (intersection type)
 // 타입이 다른 동일한 속성이 중복되어서는 안된다. 사용시점에 오류(never타입으로 할당되어 있음)
 type Animal = {name : string};
-type Cat = {age : number} & Animal; // 좌우항 타입을 모두 만족해야 한다.
+type Turtle = {age : number} & Animal; // 좌우항 타입을 모두 만족해야 한다.
 
 // @실습문제
 // 1. interface 이용해서 간단하게 타입을 만들어봅시다
