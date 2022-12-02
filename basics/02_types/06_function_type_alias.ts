@@ -73,5 +73,37 @@ type ExecuteFunctionType = (str : string, BiStringFunctionType, StringToNumberFu
 const execute : ExecuteFunctionType = (str, f1, f2) => f2(f1(str));
 console.log(execute('00012-123-456', cutZero, removeDash)); // 12123456
 
+// 4. 함수 반환값의 적절한 타입을 지정해보세요.
+// function setStyle(el:HTMLElement, prop:string, value:any) {
+//   el.style[prop] = value;
+// }
+// function getStyle(el:HTMLElement, prop:string) {
+//   return el.style[prop];
+// }
+// setStyle(document.body, 'background', '#9c1e04');
+// console.log(getStyle(document.body, 'background-color'));
 
+function setStyle(el:HTMLElement, prop:string, value:any) : void{
+  el.style[prop] = value;
+}
+function getStyle(el:HTMLElement, prop:string) : string {
+  return el.style[prop];
+}
+setStyle(document.body, 'background', '#9c1e04');
+console.log(getStyle(document.body, 'background-color'));
+
+// 5. 함수타입 지정하기
+// let setStyle2 = function (el, prop, value) {
+//   el.style[prop] = value;
+// };
+
+// let getStyle2 = function (el, prop) {
+//   return el.style[prop];
+// };
+type StyleSetterType = (el : HTMLElement, prop : string, value : any) => void;
+let setStyle2 : StyleSetterType = function (el, prop, value) {
+  el.style[prop] = value;
+};
+type StyleGetterType = (el : HTMLElement, prop : string) => string;
+let getStyle2 : StyleGetterType = (el, prop) => el.style[prop];
 

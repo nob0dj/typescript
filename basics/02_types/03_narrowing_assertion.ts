@@ -71,12 +71,12 @@ narrowMe(new Date());
 // - typeof 사용불가
 // - in 사용불가 : 배타적 속성이 없다.
 // - literal type의 구체적 속성값으로 비교
-type MotorCycle = {
+export type MotorCycle = {
   wheel : '2개',
   color : string
 }
 // 4륜바이크 All Terrain Vehicle
-type ATV = {
+export type ATV = {
   wheel : '4개',
   color : string
 }
