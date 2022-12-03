@@ -10,7 +10,6 @@ console.log(gender2); // M
 
 // @실습문제 
 // 1. 다음 MotorCycle, ATV 타입을 import해서 객체를 선언하기
-
 // tsc통해서 js변환시에는 import가 굳이 필요없다. ts-node로 실행시에는 import필수!
 import {MotorCycle, ATV} from './03_narrowing_assertion';
 
