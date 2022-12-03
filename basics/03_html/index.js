@@ -43,3 +43,4 @@ btn === null || btn === void 0 ? void 0 : btn.addEventListener('click', (e) => {
             a.href = 'https://kakao.com';
     });
 });
+console.log('str from data.js :', str);

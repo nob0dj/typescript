@@ -51,3 +51,9 @@ btn?.addEventListener('click', (e) => {
       a.href = 'https://kakao.com'
   });
 });
+
+// 외부 js 변수 사용하기
+// 웹페이지 상에서 다른 js를 참조하는 것은 먼저 선언만 하면 된다.
+// ts작업중 아래 거슬리는 오류는 declare 재정의를 사용해 에러를 compress할 수 있다.
+declare let str : string;
+console.log('str from data.js :', str);
