@@ -93,3 +93,32 @@ console.log(word1.strs) // ['kim', 'park']
 const word2 = new Word('a', 'b', 'c', 'd', 1, 2, 3, 4, 5);
 console.log(word2.nums) // [ 1, 2, 3, 4, 5 ]
 console.log(word2.strs) // [ 'a', 'b', 'c', 'd' ]
+
+
+
+// interface를 통한 타입체크
+
+// Device가 특정 타입의 속성을 가지고 있는 지 확인하려는 경우
+// class Device {
+//   model : string;
+//   price : number = 1000;
+//   constructor(model :string){
+//     this.model = model
+//   }
+// }
+// let abc = new Device('2022_1234_abc'); 
+interface DeviceType {
+  model : string;
+  price : number;
+}
+class Device implements DeviceType{
+  model : string; // 타입지정 생략시 오류없이 any타입 지정된다.
+  price : number = 1000;
+  constructor(model : string){
+    this.model = model
+  }
+}
+
+// 주의점) interface를 통해 타입체크만 한다. 타입지정이 되는 것이 아니다.
+// model, price의 타입을 지정하지 않는다면 any타입처리
+
