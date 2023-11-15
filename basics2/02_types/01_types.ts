@@ -82,3 +82,33 @@ let obj : object = { name : '홍길동', age : 33};
 // 🤗🤗🤗 이 타입을 직접 지정할 필요없이, typescript에서 자동으로 타입을 지정해준다. 
 let str = 'ㅋㅋㅋ'; // typescript에 의해 string 타입 지정
 // str = 123; // Type 'number' is not assignable to type 'string'
+
+
+// @실습문제
+// 1. 별명, 생일, 주소 변수 지정
+const nickname : string = '홍길동';
+// 1999-09-09 node는 기본적으로 UTC시각을 사용.
+// 지역대 적용된 시각을 위해 Z 접미사 추가
+const birthday : Date = new Date(Date.parse('1999-09-09T00:00:00.000Z')); 
+const address : string = '서울시 강남구 역삼동';
+console.log(nickname, birthday, address);
+
+// 2. 좋아하는 음악(곡명, 가수 모두 문자열)을 객체타입으로 지정
+const song : {title : string, singer : string} = {title : '소주한잔', singer : '임창정'};
+console.log(song);
+
+// 3. 다음 객체의 타입지정
+// let project = {
+//   member : ['kim', 'park'],
+//   days : 30,
+//   started : true,
+// }
+let project : {
+  member : string[],
+  days : number,
+  started : boolean
+} = {
+  member : ['kim', 'park'],
+  days : 30,
+  started : true,
+}
