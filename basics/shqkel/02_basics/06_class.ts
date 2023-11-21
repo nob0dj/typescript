@@ -122,3 +122,103 @@ class Device implements DeviceType{
 // 주의점) interface를 통해 타입체크만 한다. 타입지정이 되는 것이 아니다.
 // model, price의 타입을 지정하지 않는다면 any타입처리
 
+
+
+/**
+ * public 
+ *  - 자식 object들이 마음대로 사용하고 수정가능. 생략해도 동일.
+ *  - 생성자 매개변수에 public을 사용하면, 동일한 이름의 필드생성 및 값대입한다. 
+ * private - class안에서만 접근 가능
+ */
+class Item {
+  // private name;
+  // constructor(name : string) {
+  //   this.name = name;
+  // }
+  constructor(public name : string){}
+
+  public info(){
+    console.log(`${this.name} 상품정보 😁`);
+  }
+}
+
+let item1 = new Item('아메리카노');
+// item1.name = 'Americano';
+// console.log(item1.name);
+item1.info();
+
+
+
+class Musician {
+  // private name : string; // 자식클래스에서 접근불가
+  // protected type : '가수' | '피아니스트'; // 외부에서는 접근불가. 자식클래스에서 접근가능
+  // constructor(name : string, type : '가수' | '피아니스트') {
+  //   this.name = name;
+  //   this.type = type;
+  // }
+
+  constructor(public name : string, protected type : '가수' | '피아니스트') {
+  }
+
+  hi(){
+    console.log(`안녕하세요, ${this.type} ${this.name}입니다.`);
+  }
+}
+class Singer extends Musician {
+  constructor(name : string) {
+    super(name, '가수');
+  }
+  sing(song : string){
+    console.log(`${this.name}이 부릅니다... ${song}`);
+  }
+  /**
+   * static은 private, protected, public 키워드와 동시 사용가능
+   */
+  static exercise(){
+    console.log('가수 노래 연습!');
+  }
+  
+}
+class Pianist extends Musician {
+  constructor(name : string) {
+    super(name, '피아니스트');
+  }
+  play(...numbers : string[]){
+    numbers.forEach((number, index) => {
+      console.log(`${index + 1}번째곡 ${number} 연주...`);
+    });
+  }
+  
+}
+
+const 이승철 = new Singer('이승철');
+console.log(이승철);
+console.log(이승철.name);     // public이라 외부 접근 가능
+// console.log(이승철.type);  // protected라 외부접근 불가
+이승철.hi();
+이승철.sing('그런 사람 또 없습니다.');
+
+Singer.exercise(); // static 생성자함수 소속 메소드
+
+const 하야토수미노 = new Pianist('하야토수미노');
+console.log(하야토수미노);
+console.log(하야토수미노.name);
+// console.log(하야토수미노.type);
+하야토수미노.play('베토벤', '모짜르트', 'New Birth');
+
+
+// static 활용
+class FrontEndDev {
+  static skill = 'js';
+  pros = `${FrontEndDev.skill} 전문 개발자입니다.`;
+}
+
+const 재훈 = new FrontEndDev();
+console.log(재훈.pros); // js 전문 개발자입니다.
+
+// 트렌드전환 ; python
+FrontEndDev.skill = 'python';
+const 상훈 = new FrontEndDev();
+console.log(상훈.pros); // python 전문 개발자입니다.
+
+console.log(재훈.pros); // js 전문 개발자입니다. 얕은 참조아님.
